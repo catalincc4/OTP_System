@@ -4384,11 +4384,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\VS\\OTP_System\\OTP_System\\OTP_System.csproj",
+      "projectUniqueName": "D:\\VS\\OTP_System\\OTP_System\\OTP_System\\OTP_System.csproj",
       "projectName": "OTP_System",
-      "projectPath": "D:\\VS\\OTP_System\\OTP_System\\OTP_System.csproj",
+      "projectPath": "D:\\VS\\OTP_System\\OTP_System\\OTP_System\\OTP_System.csproj",
       "packagesPath": "C:\\Users\\calin\\.nuget\\packages\\",
-      "outputPath": "D:\\VS\\OTP_System\\OTP_System\\obj\\",
+      "outputPath": "D:\\VS\\OTP_System\\OTP_System\\OTP_System\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\calin\\AppData\\Roaming\\NuGet\\NuGet.Config",
