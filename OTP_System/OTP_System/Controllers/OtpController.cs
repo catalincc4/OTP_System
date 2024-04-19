@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OTP_System.dtos;
+using OTP_System.Interfaces;
 using OTP_System.Models;
-using OTP_System.Services.Interfaces;
 
 namespace OTP_System.Controllers
 {
@@ -14,11 +13,12 @@ namespace OTP_System.Controllers
     public class OtpController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
-        private readonly IOtpGeneratorService _otpGeneratorService;
-        public OtpController(UserManager<User> userManager, IOtpGeneratorService otpGeneratorService)
+        private readonly IOtpService _otpService;
+
+        public OtpController(UserManager<User> userManager, IOtpService otpService)
         {
             _userManager = userManager;
-            _otpGeneratorService = otpGeneratorService;
+            _otpService = otpService;
         }
 
         [HttpPost("/sendOtp")]
@@ -34,12 +34,12 @@ namespace OTP_System.Controllers
             {
                 return BadRequest("Inccorect email");
             }
-            var otp = _otpGeneratorService.GenerateOtpForUser(user);
-            return Ok(otp);
+            var otp = _otpService.GenerateOtpForUser(user);
+            return Ok(new { otp = otp});
         }
 
         [HttpPost("/verifyOtp")]
-        public async Task<IActionResult> VerifyOtp(VerifcationOtpDto model)
+        public async Task<IActionResult> VerifyOtp(VerificationOtpDto model)
         {
             if (!ModelState.IsValid)
             {
@@ -52,13 +52,13 @@ namespace OTP_System.Controllers
                 return BadRequest("Inccorect email");
             }
 
-            var otpValid = _otpGeneratorService.VerifyOtp(user, model.UserenterdeCode);
+            var otpValid = _otpService.VerifyOtp(user, model.UserEnteredCode);
 
             if (!otpValid)
             {
                 return BadRequest("The code entered is invalid");
             }
-            return Ok("validation succesfull");
+            return Ok(new { message = "Validation successfully" });
 
         }
       

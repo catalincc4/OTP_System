@@ -4,10 +4,11 @@ using OTP_System.Models;
 using Microsoft.OpenApi.Models;
 using OTP_System.Services;
 using Microsoft.AspNetCore.Identity;
-using OTP_System.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using OTP_System.Interfaces;
+using OTP_System.Repositories;
 
 internal class Program
 {
@@ -68,9 +69,10 @@ internal class Program
         });
 
         //Adding Services
-        builder.Services.AddScoped<IOtpGeneratorService, OtpGeneratorService>();
+        builder.Services.AddScoped<IOtpService, OtpService>();
         builder.Services.AddScoped<ISecretKeyService, SecretKeyService>();
         builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+        builder.Services.AddScoped<IOtpRepository, OtpRepository>();
 
 
         var app = builder.Build();

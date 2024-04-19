@@ -1,4 +1,4 @@
-﻿namespace OTP_System.Services.Interfaces
+﻿namespace OTP_System.Interfaces
 {
     public interface ISecretKeyService
     {

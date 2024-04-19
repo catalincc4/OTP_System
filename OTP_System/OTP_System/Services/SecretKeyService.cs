@@ -1,5 +1,5 @@
 ﻿using System.Security.Cryptography;
-using OTP_System.Services.Interfaces;
+using OTP_System.Interfaces;
 
 namespace OTP_System.Services
 {

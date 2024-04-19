@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OTP_System.dtos;
-using OTP_System.Services.Interfaces;
+using OTP_System.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace OTP_System.Controllers

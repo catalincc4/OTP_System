@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using OTP_System.Models;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace OTP_System.Services.Interfaces
+namespace OTP_System.Interfaces
 {
     public interface IAuthenticationService
     {

@@ -24,11 +24,11 @@ export class OtpService {
 
   sendOtp(sendOtpDto: SendOtpDto){
     const url = environment.apiUrl + 'sendOtp'
-    return this.http.post(url, sendOtpDto, this.httpOptions);
+    return this.http.post<any>(url, sendOtpDto, this.httpOptions);
   }
 
   verifyOtp(verificationOtpDto : VerificationOtpDto){
     const url = environment.apiUrl + 'verifyOtp'
-    return this.http.post(url, verificationOtpDto, this.httpOptions);
+    return this.http.post<any>(url, verificationOtpDto, this.httpOptions);
   }
 }

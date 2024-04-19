@@ -7,6 +7,7 @@ import {take} from "rxjs";
 import {HttpClientModule} from "@angular/common/http";
 import {NgClass, NgIf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+
 @Component({
     selector: 'app-home-page',
     standalone: true,
@@ -35,11 +36,11 @@ export class HomePageComponent implements OnInit, AfterViewInit {
     }
     sendOtp(){
         this.otpService.sendOtp({userEmail: this.userEmail}).pipe(take(1)).subscribe(
-            {next: data => {
+            {next: (data: {otp:string}) => {
                     this.startOtpVerification = true;
                     this.providedInvalidOtp = false;
                     this.otpValid = true;
-                    const message = 'Your OTP passcode is: ' + data
+                    const message = 'Your OTP passcode is: ' + data.otp
                     this.openSnackBar(message, 'close');
                 },
             error: error =>{

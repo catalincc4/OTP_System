@@ -12,8 +12,7 @@ namespace OTP_System.Models
 
         public string SecretKey { get; set; } = string.Empty;
 
-        public int OtpLenght { get; set; } = 6;
-        public int OtpDuration { get; set; } = 30;
+        public ICollection<Otp> Otps { get; set; } = new List<Otp>();
 
     }
 }

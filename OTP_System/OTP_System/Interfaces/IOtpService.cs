@@ -1,8 +1,8 @@
 ﻿using OTP_System.Models;
 
-namespace OTP_System.Services.Interfaces
+namespace OTP_System.Interfaces
 {
-    public interface IOtpGeneratorService
+    public interface IOtpService
     {
         public string GenerateOtpForUser(User user);
         public bool VerifyOtp(User user, string userEnterdeCode);

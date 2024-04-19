@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OTP_System")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+81901b2aaef57b49daefc1efe328b0617ad622bb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f426e0df90157d0dc310f55818144f47abff7791")]
 [assembly: System.Reflection.AssemblyProductAttribute("OTP_System")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OTP_System")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
