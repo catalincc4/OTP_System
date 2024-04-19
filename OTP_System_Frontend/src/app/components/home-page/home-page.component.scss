@@ -1,0 +1,39 @@
+.main-container{
+  display: flex;
+  width: 100%;
+  align-content: center;
+  justify-content: center;
+}
+
+.otp-input{
+  display: flex;
+  margin: 15% auto;
+  width: 20%;
+  flex-direction: column;
+  align-content: center;
+}
+
+.send-otp-button{
+  width: 8rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  background-color: #31e731;
+  margin: 20% auto;
+}
+
+
+.error{
+  color: #de8686;
+  font-family: "Inter Semi Bold",sans-serif;
+  font-size: 1.3rem;
+}
+
+.error-input{
+  background-color: #de8686;
+}
+input{
+  font-size: 1.2rem;
+}
+button{
+  font-size: 1.2rem;
+}

@@ -1,1 +1,25 @@
-<p>register works!</p>
+<div class="main-container">
+    <p>OTP System</p>
+    <div class="registration-message" (click)="navigateToLoginPage()" *ngIf="registrationSuccess">
+        Registration completed! Go to Login page! >>>>>>
+    </div>
+    <div *ngIf="!registrationSuccess" class="form-container">
+        <h1>LogIn</h1>
+        <form class="form" (ngSubmit)="register()">
+            <div class="name-input">
+                <input [ngClass]="firstNameEmpty? 'error' : ''"  type="text" id="firstName" name="firstName" placeholder="First name" [(ngModel)]="registerDto.firstName">
+                <input [ngClass]="lastNameEmpty ? 'error' : ''"  type="text" id="lastName" name="lastName" placeholder="Last name" [(ngModel)]="registerDto.lastName">
+            </div>
+            <div class="email-input">
+                <input [ngClass]="emailEmpty || invalidEmailFormat? 'email error' : 'email'" type="text" id="email" name="email" placeholder="Enter you email" [(ngModel)]="registerDto.email">
+            </div>
+            <div class="password-input">
+                <input [ngClass]="passwordEmpty || invalidPasswordFormat ? 'error' : ''" type="password" id="password" name="password" placeholder="Password.." [(ngModel)]="registerDto.password">
+                <input (ngModelChange)="checkPasswords()" [ngClass]="passwordFieldOn && passwordsDontMatch ? 'error' : passwordFieldOn ? 'success' : ''"  type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" [(ngModel)]="confirmPassword">
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <h4 (click)="navigateToLoginPage()" >Already have an account?Login</h4>
+        <h2 *ngIf="firstNameEmpty || lastNameEmpty || emailEmpty || passwordEmpty || invalidPasswordFormat || registerFail || invalidEmailFormat">{{errorMessage}}</h2>
+    </div>
+</div>

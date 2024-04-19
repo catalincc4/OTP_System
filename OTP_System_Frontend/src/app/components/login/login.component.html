@@ -4,13 +4,14 @@
         <h1>LogIn</h1>
     <form class="form" (ngSubmit)="login()">
         <div class="email-input">
-            <input type="text" id="email" name="email" placeholder="Enter you email" [(ngModel)]="loginDto.email">
+            <input [ngClass]="emailEmpty || invalidEmailFormat? 'error' : ''"  type="text" id="email" name="email" placeholder="Enter you email" [(ngModel)]="loginDto.email">
         </div>
         <div class="password-input">
-            <input type="password" id="password" name="password" placeholder="Password.." [(ngModel)]="loginDto.password">
+            <input [ngClass]="passwordEmpty ? 'error' : ''" type="password" id="password" name="password" placeholder="Password.." [(ngModel)]="loginDto.password">
         </div>
         <button type="submit">Login</button>
     </form>
         <h4 (click)="navigateToRegisterPage()" >Don't have an account?Register</h4>
+        <h2 *ngIf="emailEmpty || passwordEmpty || loginFail || invalidEmailFormat">{{errorMessage}}</h2>
     </div>
 </div>

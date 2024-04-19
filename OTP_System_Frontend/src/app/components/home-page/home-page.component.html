@@ -1,1 +1,10 @@
-<p>home-page works!</p>
+<div class="main-container">
+  <button class="send-otp-button" *ngIf="!otpValid && !startOtpVerification" (click)="sendOtp()">Send OTP</button>
+  <div *ngIf="startOtpVerification" class="otp-input">
+    <countdown (countdownFinished)="otpExpired()"></countdown>
+    <input [ngClass]="providedInvalidOtp? 'error-input' : ''" type="text" id="otp" name="otp" placeholder="Enter the OTP"
+           [(ngModel)]="otp">
+    <button (click)="verifyOtp()">Verify OTP</button>
+    <div *ngIf="providedInvalidOtp" class="error">Invalid OTP Provided</div>
+  </div>
+</div>

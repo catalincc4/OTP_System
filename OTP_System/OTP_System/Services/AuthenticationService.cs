@@ -37,6 +37,7 @@ namespace OTP_System.Services
             {
                 new Claim(ClaimTypes.Name, user.UserName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("email", user.Email)
             };
 
             var token = GetToken(authClaims);

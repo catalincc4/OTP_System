@@ -5,13 +5,14 @@ import {Router} from "@angular/router";
 import {TokenStorageService} from "../../services/token-storage.service";
 import {AuthService} from "../../services/auth.service";
 import {take} from "rxjs";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
+import {NgClass, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
-    FormsModule, HttpClientModule
+    FormsModule, HttpClientModule, NgClass, NgIf
   ],
   providers:[AuthService, TokenStorageService, Router],
   templateUrl: './login.component.html',
