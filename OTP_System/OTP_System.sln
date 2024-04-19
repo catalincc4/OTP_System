@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTP_System", "OTP_System\OTP_System.csproj", "{A8E82494-C1EC-488F-8590-CD8577FACACA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OTP_System", "OTP_System\OTP_System.csproj", "{A8E82494-C1EC-488F-8590-CD8577FACACA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D10E6B24-9485-48A0-88A6-38139FAA09D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTP_System_Tests", "test\OTP_System_Tests\OTP_System_Tests.csproj", "{B6FD8AFB-D515-45EE-8BF7-97F7986DC4BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{A8E82494-C1EC-488F-8590-CD8577FACACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8E82494-C1EC-488F-8590-CD8577FACACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8E82494-C1EC-488F-8590-CD8577FACACA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6FD8AFB-D515-45EE-8BF7-97F7986DC4BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6FD8AFB-D515-45EE-8BF7-97F7986DC4BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6FD8AFB-D515-45EE-8BF7-97F7986DC4BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6FD8AFB-D515-45EE-8BF7-97F7986DC4BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B6FD8AFB-D515-45EE-8BF7-97F7986DC4BB} = {D10E6B24-9485-48A0-88A6-38139FAA09D4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7A78BFF1-CCCB-4E1D-8096-B8C832F1A623}

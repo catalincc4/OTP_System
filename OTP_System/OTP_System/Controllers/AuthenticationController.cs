@@ -25,7 +25,9 @@ namespace OTP_System.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             var result = await _authenticationService.RegisterAsync(model);
+          
             if (result.Succeeded)
             {
                 return Ok(new { Message = "Registration successful." });
@@ -46,7 +48,7 @@ namespace OTP_System.Controllers
             if (user != null)
             {
                 if (await _authenticationService.IsTwoFactorAuthenticationEnabledAsync(user)) {
-                    return Ok(new { UserId = user.Id });
+                    return Ok(new { UserId = user.Id }); //to be implemented
                 }
 
                 var token = _authenticationService.GenerateTokenAsync(user);
