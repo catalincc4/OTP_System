@@ -21,6 +21,14 @@
   margin: 20% auto;
 }
 
+.input-time{
+  display: flex;
+  flex-direction: column;
+  margin-top:1rem;
+  color: #E3FEF7;
+  align-items: center;
+}
+
 
 .error{
   color: #de8686;

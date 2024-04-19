@@ -61,10 +61,10 @@ namespace OTP_System_Tests.Controllers
         [Fact]
         public async Task SendOtpForUser_ReturnsOk_WhenOtpGenerated()
         {
-            var model = new SendOtpDto { UserEmail = "existing@example.com" };
+            var model = new SendOtpDto { UserEmail = "existing@example.com",ValidationTime = 30};
             var user = new User();
             _userManagerMock.Setup(x => x.FindByEmailAsync(model.UserEmail)).ReturnsAsync(user);
-            _otpServiceMock.Setup(x => x.GenerateOtpForUser(user)).Returns("123456");
+            _otpServiceMock.Setup(x => x.GenerateOtpForUser(user, 30)).Returns("123456");
 
             var result = await _controller.SendOtpForUser(model);
 
@@ -72,7 +72,7 @@ namespace OTP_System_Tests.Controllers
                 .Which.Value.Should().BeEquivalentTo(new { otp = "123456" });
 
             _userManagerMock.Verify(x => x.FindByEmailAsync(model.UserEmail), Times.Once());
-            _otpServiceMock.Verify(x => x.GenerateOtpForUser(user), Times.Once());
+            _otpServiceMock.Verify(x => x.GenerateOtpForUser(user, 30), Times.Once());
         }
 
         [Fact]

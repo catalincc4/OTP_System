@@ -1,4 +1,6 @@
-﻿using OTP_System.Interfaces;
+﻿using Azure.Core;
+using Microsoft.EntityFrameworkCore;
+using OTP_System.Interfaces;
 using OTP_System.Models;
 using System.Security.Cryptography;
 using System.Text;
@@ -14,80 +16,37 @@ namespace OTP_System.Services
             _otpRepository = otpRepository;
         }
 
-        private long GetCurrentCounter()
+        public string GenerateOtpForUser(User user, long validaionTime)
         {
-            TimeSpan elapsedTime = DateTime.UtcNow - new DateTime(1970, 1, 1);
-            return (long)(elapsedTime.TotalSeconds / 30);
-        }
+            Random random = new Random();
+            string otp = random.Next(100000, 999999).ToString();
 
-        private byte[] ConvertSecretKeyToBytes(string secretKey)
-        {
-            return Encoding.UTF8.GetBytes(secretKey);
-        }
-
-        private string GenerateOtp(string secretKey, long counter)
-        {
-            byte[] counterBytes = BitConverter.GetBytes(counter);
-            if (BitConverter.IsLittleEndian)
+            var otpEntity = new Otp
             {
-                Array.Reverse(counterBytes);
-            }
+                UserId = user.Id,
+                OtpCode = otp,
+                validationTime = validaionTime, 
+                ExpiryTime = DateTime.Now.Add(TimeSpan.FromSeconds(validaionTime))
+            };
+            _otpRepository.Add(otpEntity);
 
-            var secretKeyBytes = ConvertSecretKeyToBytes(secretKey);
-
-            HMACSHA1 hmac = new HMACSHA1(secretKeyBytes);
-            byte[] hash = hmac.ComputeHash(counterBytes);
-
-            int offset = hash[hash.Length - 1] & 0xF;
-            int binary = ((hash[offset] & 0x7F) << 24)
-                         | ((hash[offset + 1] & 0xFF) << 16)
-                         | ((hash[offset + 2] & 0xFF) << 8)
-                         | (hash[offset + 3] & 0xFF);
-
-            int otp = binary % (int)Math.Pow(10, 6);
-            return otp.ToString().PadLeft(6, '0');
+            return otp;
         }
 
-        public string GenerateOtpForUser(User user)
+        public bool VerifyOtp(User user, string userEnterdeCode)
         {
-            long counter = GetCurrentCounter();
-            return GenerateOtp(user.SecretKey, counter);
+            string userId = user.Id;
 
-        }
+            var otpEntity = _otpRepository.FindByUserIdAndOtpCode(userId, userEnterdeCode);
 
-        public bool VerifyOtp(User user, string userEnteredCode)
-        {
-            long currentCounter = GetCurrentCounter();
-
-            var usedOtp = _otpRepository.FindByUserIdAndOtpCode(user.Id, userEnteredCode);
-            if (usedOtp != null && currentCounter - usedOtp.Counter <= 1) { 
-                return false;
-            }
-
-
-            for (int i = -1; i <= 1; i++)
+            if (otpEntity != null && otpEntity.ExpiryTime >= DateTime.Now)
             {
-                long counter = currentCounter + i;
-                string otp = GenerateOtp(user.SecretKey, counter);
-                if (otp == userEnteredCode)
-                {
-
-                    var newOtp = new Otp
-                    {
-                        UserId = user.Id,
-                        OtpCode = otp,
-                        Counter = counter,
-                        UsedAt = DateTime.UtcNow,
-                        User = user
-                    };
-
-                    _otpRepository.Add(newOtp);
-
-                    return true;
-                }
+                _otpRepository.Remove(otpEntity);
+                return true;
             }
 
             return false;
         }
+
     }
 }

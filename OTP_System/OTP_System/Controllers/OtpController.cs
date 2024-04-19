@@ -34,7 +34,7 @@ namespace OTP_System.Controllers
             {
                 return BadRequest("Inccorect email");
             }
-            var otp = _otpService.GenerateOtpForUser(user);
+            var otp = _otpService.GenerateOtpForUser(user, model.ValidationTime);
             return Ok(new { otp = otp});
         }
 

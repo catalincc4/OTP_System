@@ -1,5 +1,19 @@
 <div class="main-container">
-  <button class="send-otp-button" *ngIf="!otpValid && !startOtpVerification" (click)="sendOtp()">Send OTP</button>
+  <div class="input-time" *ngIf="!otpValid && !startOtpVerification">
+    <div>
+      <label for="hours">Hours:</label>
+      <input type="number" id="hours" name="hours" [(ngModel)]="hours" min="0" max="23" required>
+    </div>
+    <div>
+      <label for="minutes">Minutes:</label>
+      <input type="number" id="minutes" name="minutes" [(ngModel)]="minutes" min="0" max="59" required>
+    </div>
+    <div>
+      <label for="seconds">Seconds:</label>
+      <input type="number" id="seconds" name="seconds" [(ngModel)]="seconds" min="0" max="59" required>
+    </div>
+  <button class="send-otp-button" (click)="sendOtp()">Send OTP</button>
+  </div>
   <div *ngIf="startOtpVerification" class="otp-input">
     <countdown (countdownFinished)="otpExpired()"></countdown>
     <input [ngClass]="providedInvalidOtp? 'error-input' : ''" type="text" id="otp" name="otp" placeholder="Enter the OTP"

@@ -6,5 +6,6 @@ namespace OTP_System.dtos
     {
         [Required]
         public string UserEmail { get; set; }
+        public long ValidationTime { get; set; }
     }
 }
