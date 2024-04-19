@@ -16,7 +16,6 @@ namespace OTP_System.Repositories
         {
             var otp = _dataContext.Otps
                 .Where(o => o.UserId == userId && o.OtpCode == otpCode)
-                .OrderByDescending(o => o.UsedAt)
                 .FirstOrDefault();
 
             return otp;
@@ -24,9 +23,15 @@ namespace OTP_System.Repositories
 
         public EntityEntry<Otp> Add(Otp otp)
         {
-            var entry = _dataContext.Add(otp);
+            var entry = _dataContext.Otps.Add(otp);
             _dataContext.SaveChanges();
             return entry;
+        }
+
+        public void Remove(Otp otp)
+        {
+            _dataContext.Otps.Remove(otp);
+            _dataContext.SaveChanges();
         }
     }
 }

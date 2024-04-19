@@ -286,3 +286,4 @@ D:\VS\OTP_System\OTP_System\OTP_System\obj\Debug\net8.0\refint\OTP_System.dll
 D:\VS\OTP_System\OTP_System\OTP_System\obj\Debug\net8.0\OTP_System.pdb
 D:\VS\OTP_System\OTP_System\OTP_System\obj\Debug\net8.0\OTP_System.genruntimeconfig.cache
 D:\VS\OTP_System\OTP_System\OTP_System\obj\Debug\net8.0\ref\OTP_System.dll
+D:\VS\OTP_System\OTP_System\OTP_System\bin\Debug\net8.0\coverage.json

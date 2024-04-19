@@ -8,5 +8,7 @@ namespace OTP_System.Interfaces
         Otp FindByUserIdAndOtpCode(string userId, string otpCode);
 
         EntityEntry<Otp> Add(Otp otp);
+
+        void Remove(Otp otp);
     }
 }

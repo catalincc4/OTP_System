@@ -70,7 +70,6 @@ internal class Program
 
         //Adding Services
         builder.Services.AddScoped<IOtpService, OtpService>();
-        builder.Services.AddScoped<ISecretKeyService, SecretKeyService>();
         builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
         builder.Services.AddScoped<IOtpRepository, OtpRepository>();
 

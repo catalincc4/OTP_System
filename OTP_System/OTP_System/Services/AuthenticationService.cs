@@ -15,19 +15,16 @@ namespace OTP_System.Services
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<AuthenticationService> _logger;
-        private readonly ISecretKeyService _secretKeyService;
         private readonly IConfiguration _configuration;
 
         public AuthenticationService(UserManager<User> userManager, 
             SignInManager<User> signInManager,
             ILogger<AuthenticationService> logger,
-            ISecretKeyService secretKeyService,
             IConfiguration configuration)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
-            _secretKeyService = secretKeyService;
             _configuration = configuration;
         }
 
@@ -66,13 +63,11 @@ namespace OTP_System.Services
 
         public async Task<IdentityResult> RegisterAsync(RegisterDto model)
         {
-            var secretKey = _secretKeyService.GenerateSecretKey();
             var user = new User {
                 UserName = model.Email,
                 Email = model.Email,
                 FirstName = model.FirstName,
-                LastName = model.LastName,
-                SecretKey = secretKey
+                LastName = model.LastName
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
